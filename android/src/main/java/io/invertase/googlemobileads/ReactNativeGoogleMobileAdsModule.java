@@ -139,6 +139,17 @@ public class ReactNativeGoogleMobileAdsModule extends ReactNativeModule {
   }
 
   @ReactMethod
+  public void setAppVolume(float volume, Promise promise) {
+    try {
+      MobileAds.setAppVolume(volume);
+      promise.resolve(null); // Resolve the promise with no data
+    } catch (Exception e) {
+      promise.reject("SET_VOLUME_ERROR", "Failed to set app volume", e);
+    }
+  }
+
+
+  @ReactMethod
   public void setRequestConfiguration(ReadableMap requestConfiguration, Promise promise) {
     MobileAds.setRequestConfiguration(buildRequestConfiguration(requestConfiguration));
     promise.resolve(null);
